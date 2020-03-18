@@ -24,6 +24,30 @@ class GetterProperty : IGetter {
     }
 }
 
+class  GetterFormatter : IGetter {
+    readonly IGetter getter;
+    readonly LogFormatterAttribute attr;
+    public GetterFormatter(IGetter getter, LogFormatterAttribute attr) {
+        this.getter = getter;
+        this.attr = attr;
+    }
+    public string GetName() { return getter.GetName(); }
+    public object Call(object target) { 
+        object val = getter.Call(target);
+        return attr.Format(val);
+    }
+}
+
+[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Method)]
+public class ToLogAttribute : Attribute { }
+
+[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Method)]
+public abstract class LogFormatterAttribute : Attribute { 
+
+    public abstract object Format(object val);
+}
+
+
 class GetterField : IGetter {
     readonly FieldInfo f; // readonly <=> final
     public GetterField(FieldInfo f) { this.f = f; }
@@ -35,6 +59,17 @@ public class Logger {
 
     static Dictionary<Type, List<IGetter>> cache = new  Dictionary<Type, List<IGetter>>();
 
+    static IGetter CheckToFormatter(MemberInfo member, IGetter getter) {
+        LogFormatterAttribute attr = (LogFormatterAttribute) member.GetCustomAttribute(typeof(LogFormatterAttribute));
+        return attr != null
+                ? new GetterFormatter(getter, attr)
+                : getter;
+
+    }
+    
+    static bool CheckToLog(MemberInfo member) {
+        return member.IsDefined(typeof(ToLogAttribute));
+    }
     public static void Log(object target) {
         Type klass = target.GetType();
         Console.Write(klass.Name);
@@ -56,7 +91,7 @@ public class Logger {
 
     static void LogMembers(Type klass, object target) {
         List<IGetter> ms = CheckMembersOf(klass);
-        foreach (MethodInfo m in ms) {
+        foreach (IGetter m in ms) {
             Console.Write(" " + m.GetName());
             Console.Write(": ");
             Console.Write(m.Call(target));
@@ -70,10 +105,16 @@ public class Logger {
             return ms;
         ms = new List<IGetter>();
         foreach (FieldInfo f in klass.GetFields()) {
-            ms.Add(new GetterField(f));
+            if (CheckToLog(f)) {
+                IGetter getter = new GetterField(f);
+                ms.Add(CheckToFormatter(f, getter));
+            }
         }
         foreach (PropertyInfo p in klass.GetProperties()) {
-            ms.Add(new GetterProperty(p));
+            if (CheckToLog(p)) {
+                IGetter getter = new GetterProperty(p);
+                ms.Add(CheckToFormatter(p, getter));
+            }
         }
         /*
         foreach (MethodInfo m in klass.GetMethods()) {
