@@ -23,6 +23,33 @@ class App {
         return res;
     }
 
+    class EnumerableDistinct : IEnumerable, IEnumerator {
+        private readonly IEnumerable src;
+        private IEnumerator iter;
+        private ArrayList list;
+        public EnumerableDistinct(IEnumerable src) {
+            this.src = src;
+        }
+        public IEnumerator GetEnumerator() {
+            this.list = new ArrayList();
+            this.iter = src.GetEnumerator();
+            return this;
+        }
+        public bool MoveNext() { 
+            while(iter.MoveNext()){
+                if(!list.Contains(iter.Current)){
+                    list.Add(iter.Current);
+                    return true;
+                }
+            }
+            return false;
+        }
+        public object Current { get { return iter.Current; }}
+        public void Reset() { 
+            iter.Reset(); 
+        }
+    }
+
     class EnumerableMapper : IEnumerable, IEnumerator {
         private readonly IEnumerable src;
         private IEnumerator iter;
@@ -67,7 +94,31 @@ class App {
             iter.Reset(); 
         }
     }
-     
+    class EnumerableLimit : IEnumerable, IEnumerator {
+        private readonly IEnumerable src;
+        private IEnumerator iter;
+        private int limit;
+        private int index;
+        public EnumerableLimit(IEnumerable src, int limit) {
+            this.src = src;
+            this.limit= limit;
+        }
+        public IEnumerator GetEnumerator() {
+            this.iter = src.GetEnumerator();
+            return this;
+        }
+        public bool MoveNext() { 
+            if(index >= limit) return false;
+            index++;
+            return iter.MoveNext(); 
+        }
+        public object Current { get { return iter.Current; }}
+        public void Reset() {
+            iter.Reset();
+            index = 0;
+        }
+    } 
+    
     static IEnumerable Convert(IEnumerable src, Function mapper) {
         return new EnumerableMapper(src, mapper);
     }
@@ -76,20 +127,18 @@ class App {
         return new EnumerableFilter(src, pred);
     }
     static IEnumerable Distinct(IEnumerable src) {
-        ArrayList res = new ArrayList();
-        IEnumerator iter = src.GetEnumerator();
-        while (iter.MoveNext()) {
-            if(!res.Contains(iter.Current))
-                res.Add(iter.Current);
-        }
-        return res;
+        return new EnumerableDistinct(src);
     }
     static IEnumerable Limit(IEnumerable src, int size) {
+        return new EnumerableLimit(src, size);
+    }
+    static IEnumerable Skip(IEnumerable src, int first) {
         IList res = new ArrayList();
         IEnumerator iter = src.GetEnumerator();
-        for (int i = 0; iter.MoveNext() && i < size; i++)
+        for (int i = 0; iter.MoveNext(); i++)
         {
-            res.Add(iter.Current);
+            if(first-- > 0)
+                res.Add(iter.Current);
         }
         return res;
     }
@@ -107,12 +156,16 @@ class App {
                         Filter(            // Seq<Student>
                             Convert(       // Seq<Student> 
                                 Lines("i41d.txt"),
-                                item => Student.Parse(item.ToString())),  // Seq<String>
+                                item => { 
+                                    Console.WriteLine("Parsing line... " + item);
+                                    return Student.Parse(item.ToString());
+                                }),  // Seq<String>
                             item => ((Student) item).nr > 46040), 
                         item => ((Student) item).name.StartsWith("J")),
                     item => ((Student) item).name.Split(' ')[0]),
                 3);
-    
+        Console.WriteLine("Chaining pipeline !!!");
+        Console.ReadLine();
         foreach(object l in names)
             Console.WriteLine(l);
     }
