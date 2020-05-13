@@ -1,0 +1,36 @@
+44789|ALEXANDRE SANTOS ROCHA|10|44789@alunos.isel.ipl.pt|Alexandre-Rocha
+44790|GUILHERME BELO ESTEVES ALVES|13|44790@alunos.isel.ipl.pt|belal
+44799|ANDRÉ MANUEL ALVES RAMALHO|9|44799@alunos.isel.ipl.pt|AndreRamalho
+44807|FILIPE RAMOS MENDES|10|44807@alunos.isel.ipl.pt|Filipe-Mendes
+44832|HUGO SOUSA MARTINS|9|44832@alunos.isel.ipl.pt|Hugo Martins
+44875|INÊS FILIPA ALVES SILVA|5|44875@alunos.isel.ipl.pt|inesfasilva
+45371|GONÇALO ANDRÉ CESÁRIO COSTA|10|45371@alunos.isel.ipl.pt|BlastedCore
+45997|INÊS MESTRE GALVÃO DE SOUSA|6|45997@alunos.isel.ipl.pt|inesmestre
+46000|DANIEL JOSÉ AMORIM DIAS|2|46000@alunos.isel.ipl.pt|Daniel Dias
+46001|JOSÉ FILIPE CRUZ DOS SANTOS|5|46001@alunos.isel.ipl.pt|McDottie
+46008|DIOGO VASCONCELOS DE SOUSA|8|46008@alunos.isel.ipl.pt|dvsshadow
+46009|BERNARDO HENRIQUES ÁGUA-MEL|11|46009@alunos.isel.ipl.pt|aguamel
+46014|JOÃO GONÇALO MARTINS BONACHO|4|46014@alunos.isel.ipl.pt|Bonacho17
+46018|FRANCISCO PATRICIO FILIPE|6|46018@alunos.isel.ipl.pt|Francisco46018
+46022|HUGO MIGUEL COUTINHO DIAS|1|46022@alunos.isel.ipl.pt|GenericDrugs
+46036|PATRICIA MARTINS PEREIRA|5|46036@alunos.isel.ipl.pt|patricampereira
+46043|PEDRO MIGUEL DE SOUSA BARRACAS|13|46043@alunos.isel.ipl.pt|barras
+46049|PEDRO MIGUEL TERROSO FERREIRA ROSAS|2|46049@alunos.isel.ipl.pt|PedroRosas
+46055|JOÃO FRANCISCO MARQUES MARTINS|1|46055@alunos.isel.ipl.pt|BinaryEnigma01
+46058|JOÃO MIGUEL EVARISTO SANTOS|4|46058@alunos.isel.ipl.pt|oniot
+46063|MIGUEL BORGES GUERREIRO DOURADO|3|46063@alunos.isel.ipl.pt|miguelbdourado
+46065|JOSÉ PEDRO DAS NEVES CALCINHA RATO|2|46065@alunos.isel.ipl.pt|JoseRato
+46068|PEDRO MIGUEL FERREIRA REIS|11|46068@alunos.isel.ipl.pt|DiogoCunha
+46072|ADRIANO VIEIRA BAPTISTA|6|46072@alunos.isel.ipl.pt|AdrVB
+46073|IVO PACHECO|7|46073@alunos.isel.ipl.pt|Patcheco17
+46074|RICARDO ALEXANDRE CRUZ MARGALHAU|1|46074@alunos.isel.ipl.pt|xploitedd
+46075|ANDRÉ LOBO NORONHA|4|46075@alunos.isel.ipl.pt|AAAA7-v1
+46078|TIAGO MANUEL MORGADO DAVID|8|46078@alunos.isel.ipl.pt|TiagoMMDavid
+46086|TIAGO MATEUS CARVALHO|7|46086@alunos.isel.ipl.pt|TiagoMateus7
+46096|JOÃO TIAGO REGO DIAS|12|46096@alunos.isel.ipl.pt|PedroBarracas
+46098|DINIS RODRIGUES DIAS|11|46098@alunos.isel.ipl.pt|JoãoDias
+46101|DANIEL DRON|3|46101@alunos.isel.ipl.pt|Herooyyy
+46105|DIOGO TOUREIRO CUNHA|12|46105@alunos.isel.ipl.pt|ddz99
+46107|JOÃO PEDRO MARQUES MOURA|8|46107@alunos.isel.ipl.pt|PTKickass
+46112|TIAGO FILIPE LUIS ALVES|7|46112@alunos.isel.ipl.pt|46112Tiago
+46538|DAVID ALEXANDRE MARTINS DUARTE|13|46538@alunos.isel.ipl.pt|aladu
