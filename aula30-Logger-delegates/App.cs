@@ -75,6 +75,9 @@ class App {
         Logger.Log(s);      
         Logger.Log(a);
         Logger.Log(classroom);
+        
+        // Logger.For<DateTime>("", () =>....)
+        // Logger.Log(new DateTime(1980,4,25));
     }
 }
 

@@ -75,6 +75,9 @@ public class Logger {
 
     public static void For<T, R>(string name, Func<T, R> getter) {
         List<IGetter> getters = CheckMembersOf(typeof(T));
+        // 1. Pesquisar getter with GetName() == name
+        // 2. If exists remove it
+        // 3. If 2 then Add new IGetter for getter
     }
 
     static IGetter CheckToFormatter(MemberInfo member, IGetter getter) {
