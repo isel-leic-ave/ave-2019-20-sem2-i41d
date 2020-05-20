@@ -73,6 +73,10 @@ public class Logger {
 
     static Dictionary<Type, List<IGetter>> cache = new  Dictionary<Type, List<IGetter>>();
 
+    public static void For<T, R>(string name, Func<T, R> getter) {
+        List<IGetter> getters = CheckMembersOf(typeof(T));
+    }
+
     static IGetter CheckToFormatter(MemberInfo member, IGetter getter) {
         LogFormatterAttribute attr = (LogFormatterAttribute) member.GetCustomAttribute(typeof(LogFormatterAttribute));
         return attr != null

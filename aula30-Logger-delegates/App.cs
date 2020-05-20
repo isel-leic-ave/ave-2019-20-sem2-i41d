@@ -28,7 +28,7 @@ public class Student {
     [ToLog] public string Name{ get; set; }
     public int Group{ get; set; }
     public string GithubId{ get; set; }
-    [ToLog] public DateTime Birth { get; set; }
+    [ToLog]public DateTime Birth { get; set; }
 
     public Student(int nr, string name, int group, string githubId, DateTime birth)
     {
@@ -68,6 +68,9 @@ class App {
             new Student(765864, "Maria El", 4677, "ma", new DateTime(1956,11,26)),
             new Student(456757, "Antonias", 3153, "an", new DateTime(1997,5,28)),
         };
+        Logger.For<Student, int>("Birth", std => std.Birth.Year);
+        Logger.For<Student, string>("Name", std => std.Name.Split(' ')[0]);
+        
         Logger.Log(p);      
         Logger.Log(s);      
         Logger.Log(a);
